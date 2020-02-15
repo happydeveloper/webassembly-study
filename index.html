@@ -1,8 +1,14 @@
 <!doctype html>
-<script src="a.out.js"></script>
+<script src="/a.out.js"></script>
 <script>
-  Module.onRuntimeInitialized = _ => {
-    const fib = Module.cwrap('fib', 'number', ['number']);
-    console.log(fib(12));
+  Module.onRuntimeInitialized = async _ => {
+    const api = {
+      version: Module.cwrap('version', 'number', []),
+      intro: Module.cwrap('intro', 'string', []),
+    };
+
+    console.log(api.version());
+    console.log("web api");
+    console.log(api.intro());
   };
 </script>
